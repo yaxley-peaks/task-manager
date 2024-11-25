@@ -28,11 +28,14 @@ export function AddTask(props) {
                    className="p-1 m-4"/>
             <label htmlFor="task-status">Status: </label>
             <select className="p-1 m-4" id={"task-status"} value={taskStatus} onChange={handleTaskStatusChange}>
-                <option value={0} selected={true}>Pending</option>
+                <option value={0}>Pending</option>
                 <option value={1}>Done</option>
             </select>
             <br/>
-            <button className="p-4 m-4" onClick={handleTaskAddition}>Add Task</button>
+            <button className="p-4 m-4" onClick={() => {
+                handleTaskAddition();
+                setTaskName('');
+            }}>Add Task</button>
         </div>
     </div>;
 

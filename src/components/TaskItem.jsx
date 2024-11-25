@@ -25,18 +25,23 @@ export function TaskItem(props) {
             </li>);
             break;
         case false:
-            renderedJsx = (<li className="p-1 m-1 text-xl" key={props.task.id}>
-                <input type={"checkbox"}
-                       onChange={(e) => {
-                           setStatus(e.target.checked);
-                           props.onDone(props.task.id, e.target.checked)
-                       }}
-                       className="m-1"
-                       checked={status}/>
-                {wrapItemInStrikeThrough(taskTitle, status)}
-                <button className="m-1 p-1" onClick={() => setEditing(true)}>Edit</button>
-                <button className="m-1 p-1" onClick={() => props.onDelete(props.task.id)}>Delete</button>
-            </li>);
+            renderedJsx = (<>
+                <li className="p-1 m-1 text-xl" key={props.task.id}>
+                    <input type={"checkbox"}
+                           onChange={(e) => {
+                               setStatus(e.target.checked);
+                               props.onDone(props.task.id, e.target.checked)
+                           }}
+                           className="m-1"
+                           checked={status}/>
+                    {wrapItemInStrikeThrough(taskTitle, status)}
+                    <span className="m-1 whitespace-nowrap">
+                    <button className="m-1 p-1" onClick={() => setEditing(true)}>Edit</button>
+                    <button className="m-1 p-1" onClick={() => props.onDelete(props.task.id)}>Delete</button>
+                </span>
+                </li>
+                <hr/>
+            </>);
             break;
         default:
             break;
