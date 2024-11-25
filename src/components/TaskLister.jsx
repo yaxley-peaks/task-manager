@@ -10,12 +10,17 @@ export function TaskLister(props) {
     }
     return <ol className="list-decimal text-left">
         {props.tasks.map((task) => (<TaskItem key={task.id}
-                                                     onChange={handleTaskMarkAsRead} task={task}
-        onEdit={props.taskEditDispatcher}/> ))}
+                                              onChange={handleTaskMarkAsRead} task={task}
+                                              onEdit={props.taskEditDispatcher}
+                                              onDelete={props.taskDeleteDispatcher}
+                                              onDone={props.taskDoneDispatcher}
+            />))}
     </ol>;
 }
 
 TaskLister.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.any),
     taskEditDispatcher: PropTypes.func,
+    taskDeleteDispatcher: PropTypes.func,
+    taskDoneDispatcher: PropTypes.func,
 };

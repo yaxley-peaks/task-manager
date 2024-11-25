@@ -5,9 +5,6 @@ export function TaskItem(props) {
     const [status, setStatus] = useState(props.task.completed);
     const [taskTitle, setTaskTitle] = useState(props.task.title);
     const [isEditing, setEditing] = useState(false);
-    const handleStatusChange = (e) => {
-        setStatus(e.target.checked);
-    }
     const wrapItemInStrikeThrough = (text, status) => {
         if (status) {
             return <s>{text}</s>;
@@ -29,10 +26,16 @@ export function TaskItem(props) {
             break;
         case false:
             renderedJsx = (<li className="p-1 m-1 text-xl" key={props.task.id}>
-                <input type={"checkbox"} onChange={handleStatusChange} className="m-1" checked={status}/>
+                <input type={"checkbox"}
+                       onChange={(e) => {
+                           setStatus(e.target.checked);
+                           props.onDone(props.task.id, e.target.checked)
+                       }}
+                       className="m-1"
+                       checked={status}/>
                 {wrapItemInStrikeThrough(taskTitle, status)}
                 <button className="m-1 p-1" onClick={() => setEditing(true)}>Edit</button>
-                <button className="m-1 p-1">Delete</button>
+                <button className="m-1 p-1" onClick={() => props.onDelete(props.task.id)}>Delete</button>
             </li>);
             break;
         default:
@@ -44,5 +47,10 @@ export function TaskItem(props) {
 }
 
 TaskItem.propTypes = {
-    onChange: PropTypes.func, task: PropTypes.any, tasks: PropTypes.arrayOf(PropTypes.any), onEdit: PropTypes.func
+    onChange: PropTypes.func,
+    task: PropTypes.any,
+    tasks: PropTypes.arrayOf(PropTypes.any),
+    onEdit: PropTypes.func,
+    onDelete: PropTypes.func,
+    onDone: PropTypes.func
 };
