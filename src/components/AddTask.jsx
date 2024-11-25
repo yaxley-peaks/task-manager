@@ -22,7 +22,7 @@ export function AddTask(props) {
         props.callbackFn(taskName, taskStatus);
     }
 
-    return <div className="text-center font-sans border-2 m-4">
+    return <div className="text-center font-sans border-2 rounded-2xl m-4">
         <p className="p-1 m-4 text-2xl">Add Task</p>
         <div className="p-1 m-4">
             <label htmlFor="task-name">Title: </label>
@@ -43,7 +43,7 @@ export function AddTask(props) {
             </select>
             <br/>
 
-            <button className="p-4 m-4" onClick={() => {
+            <button className="p-4 m-4 text-green-500" onClick={() => {
                 handleTaskAddition();
                 setTaskName('');
             }}>Add Task

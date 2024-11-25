@@ -9,11 +9,12 @@ export function TaskList(props) {
         setChecked(!e.target.checked);
     }
     return <ol className="list-decimal text-left">
-        {props.tasks.map((task) => (<TaskItem key={task.id}
-                                              onChange={handleTaskMarkAsRead} task={task}
-                                              onEdit={props.taskEditDispatcher}
-                                              onDelete={props.taskDeleteDispatcher}
-                                              onDone={props.taskDoneDispatcher}
+        {props.tasks.map((task) =>
+            (<TaskItem key={task.id}
+                       onChange={handleTaskMarkAsRead} task={task}
+                       onEdit={props.taskEditDispatcher}
+                       onDelete={props.taskDeleteDispatcher}
+                       onDone={props.taskDoneDispatcher}
             />))}
     </ol>;
 }

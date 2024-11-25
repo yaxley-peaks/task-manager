@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
+import {faTrashCan} from "@fortawesome/free-regular-svg-icons";
 
 export function TaskItem(props) {
     const [status, setStatus] = useState(props.task.completed);
@@ -36,8 +39,13 @@ export function TaskItem(props) {
                            checked={status}/>
                     {wrapItemInStrikeThrough(taskTitle, status)}
                     <span className="m-1 whitespace-nowrap">
-                    <button className="m-1 p-1" onClick={() => setEditing(true)}>Edit</button>
-                    <button className="m-1 p-1" onClick={() => props.onDelete(props.task.id)}>Delete</button>
+                    <button className="m-1 p-1" onClick={() => setEditing(true)}>
+                        
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                    </button>
+                    <button className="m-1 p-1" onClick={() => props.onDelete(props.task.id)}>
+                        <FontAwesomeIcon icon={faTrashCan} className="text-red-700"/>
+                    </button>
                 </span>
                 </li>
                 <hr/>
