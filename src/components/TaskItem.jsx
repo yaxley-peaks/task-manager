@@ -20,7 +20,10 @@ export function TaskItem(props) {
     switch (isEditing) {
         case true:
             renderedJsx = (<li className="p-1 m-1 text-xl" key={props.task.id}>
-                <input type="text" value={taskTitle} onChange={(e) => (setTaskTitle(e.target.value))}/>
+                <input type="text" value={taskTitle} onChange={(e) => {
+                    setTaskTitle(e.target.value);
+                    props.onEdit(props.task.id, e.target.value)
+                }}/>
                 <button className="m-1 p-1" onClick={() => setEditing(false)}>Save</button>
             </li>);
             break;
@@ -41,5 +44,5 @@ export function TaskItem(props) {
 }
 
 TaskItem.propTypes = {
-    onChange: PropTypes.func, task: PropTypes.any, tasks: PropTypes.arrayOf(PropTypes.any),
+    onChange: PropTypes.func, task: PropTypes.any, tasks: PropTypes.arrayOf(PropTypes.any), onEdit: PropTypes.func
 };

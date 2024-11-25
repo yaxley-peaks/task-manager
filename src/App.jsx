@@ -25,11 +25,14 @@ function App() {
         latestTaskId.current = newId;
         setTasks((tasks) => [ {id: newId, title: title, completed: status === "1"}, ...tasks]);
     }
+    const taskEditCallback = (id, title) => {
+        tasks.find(x => x.id === id).title = title;
+    }
     return (<>
         <h1 className="text-center font-sans">Task Manager</h1>
 
         <TaskAdder callbackFn={taskAdderCallback}/>
-        <TaskLister tasks={tasks}/>
+        <TaskLister tasks={tasks} taskEditDispatcher={taskEditCallback}/>
     </>)
 }
 
