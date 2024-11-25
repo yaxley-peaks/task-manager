@@ -8,23 +8,33 @@ function App() {
     const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) ?? []);
     const latestTaskId = useRef(0);
     useEffect(() => {
+        const storedTasks = localStorage.getItem('tasks');
+        if (storedTasks) {
+            const ts = JSON.parse(storedTasks)
+            setTasks(ts);
+            latestTaskId.current = ts.at(-1)?.id ?? 1;
+            return;
+        }
 
-            (async () => {
-                /*
-                @type {List<any>}
-                */
-                const fetchedTasks = await fetch("https://jsonplaceholder.typicode.com/todos")
-                    .then(res => res.json());
-                // for now
-                const tasks = fetchedTasks.slice(0, 2)
-                latestTaskId.current = tasks.at(-1).id;
-                setTasks(tasks.reverse());
-            })();
+
+        (async () => {
+            /*
+            @type {List<any>}
+            */
+            const fetchedTasks = await fetch("https://jsonplaceholder.typicode.com/todos")
+                .then(res => res.json());
+            // for now
+            const tasks = fetchedTasks.slice(0, 2)
+            latestTaskId.current = tasks.at(-1).id;
+            setTasks(tasks.reverse());
+        })();
 
     }, []);
+
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
+
     const taskAdderCallback = (title, status) => {
         const newId = latestTaskId.current + 1;
         latestTaskId.current = newId;

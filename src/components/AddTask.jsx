@@ -10,6 +10,7 @@ export function AddTask(props) {
     const [taskStatus, setTaskStatus] = useState(0);
 
     const handleTaskTitleChange = (e) => {
+        if(e.target.value === '' || e.target.value === null) return;
         setTaskName(e.target.value);
     }
     const handleTaskStatusChange = (e) => {
@@ -17,6 +18,7 @@ export function AddTask(props) {
     }
 
     const handleTaskAddition = () => {
+        if(taskName === '' || taskName === null) return;
         props.callbackFn(taskName, taskStatus);
     }
 
