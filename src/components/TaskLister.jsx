@@ -1,8 +1,16 @@
 import PropTypes from "prop-types";
+import {useState} from "react";
+import {TaskItem} from "./TaskItem.jsx";
+
 
 export function TaskLister(props) {
+    const [, setChecked] = useState(true);
+    const handleTaskMarkAsRead = (e) => {
+        setChecked(!e.target.checked);
+    }
     return <ol className="list-decimal text-left">
-        {props.tasks.map((task, index) => (<li key={index}>{task.title}</li>))}
+        {props.tasks.map((task, index) => (<TaskItem key={index}
+                                                     onChange={handleTaskMarkAsRead} task={task}/>))}
     </ol>;
 }
 

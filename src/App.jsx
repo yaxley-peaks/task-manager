@@ -17,10 +17,13 @@ function App() {
             setTasks(fetchedTasks.slice(0, 20));
         })();
     }, []);
+    const taskAdderCallback = (title, status) => {
+        setTasks((tasks) => [ {title: title, completed: status}, ...tasks]);
+    }
     return (<>
         <h1 className="text-center font-sans">Task Manager</h1>
 
-        <TaskAdder/>
+        <TaskAdder callbackFn={taskAdderCallback}/>
         <TaskLister tasks={tasks}/>
     </>)
 }
