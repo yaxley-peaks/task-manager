@@ -22,7 +22,7 @@ export function AddTask(props) {
         props.callbackFn(taskName, taskStatus);
     }
 
-    return <div className="text-center font-sans border-2 rounded-2xl m-4 flex flex-col items-center">
+    return <div className="text-center font-sans border-2 border-black dark:border-white rounded-2xl m-4 flex flex-col items-center">
         <p className="p-1 m-4 text-2xl">Add Task</p>
         <div className="p-1 m-4 flex-col flex justify-center items-center w-full text-xl">
             <span className="flex flex-row items-center justify-center flex-wrap">
@@ -45,7 +45,7 @@ export function AddTask(props) {
                 <option value={1}>Done</option>
             </select>
             </span>
-            <button className="p-4 m-4 text-green-500" onClick={() => {
+            <button className="p-4 m-4" onClick={() => {
                 handleTaskAddition();
                 setTaskName('');
             }}>Add Task

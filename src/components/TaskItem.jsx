@@ -48,7 +48,7 @@ export function TaskItem(props) {
                     </button>
                 </span>
                 </li>
-                <hr/>
+                <hr className="border border-gray-800 dark:border-white" />
             </>);
             break;
         default:

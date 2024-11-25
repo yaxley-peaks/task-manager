@@ -6,13 +6,16 @@ import {TaskList} from "./components/TaskList.jsx";
 
 function App() {
     const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) ?? []);
+    const [searchText, setSearchText] = useState("");
     const latestTaskId = useRef(0);
+
     useEffect(() => {
         const storedTasks = localStorage.getItem('tasks');
         if (storedTasks) {
             const ts = JSON.parse(storedTasks)
             setTasks(ts);
-            latestTaskId.current = ts.at(-1)?.id ?? 1;
+            // we reverse the array when api fetch, but save it the correct way around
+            latestTaskId.current = ts.at(0)?.id ?? 1;
             return;
         }
 
@@ -55,15 +58,22 @@ function App() {
         console.log(t);
         setTasks(t);
     }
-    return (<>
+
+    return (<div className="grid grid-cols-1 gap-4">
         <h1 className="text-center font-sans">Task Manager</h1>
 
         <AddTask callbackFn={taskAdderCallback}/>
-        <TaskList tasks={tasks}
+
+        <input className="p-2 m-2 w-full max-w-full rounded-lg" type="text" value={searchText} placeholder="Search..."
+               onChange={(e) => {
+                   setSearchText(e.target.value);
+               }}/>
+
+        <TaskList tasks={tasks.filter(t => t.title.toLowerCase().includes(searchText.toLowerCase()))}
                   taskEditDispatcher={taskEditCallback}
                   taskDeleteDispatcher={taskDeleteCallback}
                   taskDoneDispatcher={taskDoneCallback}/>
-    </>)
+    </div>)
 }
 
 export default App
