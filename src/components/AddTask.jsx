@@ -22,27 +22,29 @@ export function AddTask(props) {
         props.callbackFn(taskName, taskStatus);
     }
 
-    return <div className="text-center font-sans border-2 rounded-2xl m-4">
+    return <div className="text-center font-sans border-2 rounded-2xl m-4 flex flex-col items-center">
         <p className="p-1 m-4 text-2xl">Add Task</p>
-        <div className="p-1 m-4">
-            <label htmlFor="task-name">Title: </label>
+        <div className="p-1 m-4 flex-col flex justify-center items-center w-full text-xl">
+            <span className="flex flex-row items-center justify-center flex-wrap">
+            <label htmlFor="task-name" className="flex-none">Title: </label>
             <input type={"text"}
                    required={true}
                    id={"task-name"}
                    value={taskName}
                    onChange={handleTaskTitleChange}
-                   className="p-1 m-4"/>
+                   className="p-2 m-4 flex-1 rounded"/>
 
+            </span>
+            <span className="flex flex-row items-center">
             <label htmlFor="task-status">Status: </label>
-            <select className="p-1 m-4"
+            <select className="p-2 m-4 rounded"
                     id={"task-status"}
                     value={taskStatus}
                     onChange={handleTaskStatusChange}>
                 <option value={0}>Pending</option>
                 <option value={1}>Done</option>
             </select>
-            <br/>
-
+            </span>
             <button className="p-4 m-4 text-green-500" onClick={() => {
                 handleTaskAddition();
                 setTaskName('');

@@ -8,7 +8,7 @@ export function TaskList(props) {
     const handleTaskMarkAsRead = (e) => {
         setChecked(!e.target.checked);
     }
-    return <ol className="list-decimal text-left">
+    return <ol className="text-left">
         {props.tasks.map((task) =>
             (<TaskItem key={task.id}
                        onChange={handleTaskMarkAsRead} task={task}

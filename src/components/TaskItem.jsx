@@ -29,13 +29,13 @@ export function TaskItem(props) {
             break;
         case false:
             renderedJsx = (<>
-                <li className="p-1 m-1 text-xl" key={props.task.id}>
+                <li className="p-1 m-1 text-xl flex items-center" key={props.task.id}>
                     <input type={"checkbox"}
                            onChange={(e) => {
                                setStatus(e.target.checked);
                                props.onDone(props.task.id, e.target.checked)
                            }}
-                           className="m-1"
+                           className="m-3 scale-150"
                            checked={status}/>
                     {wrapItemInStrikeThrough(taskTitle, status)}
                     <span className="m-1 whitespace-nowrap">
