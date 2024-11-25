@@ -2,7 +2,6 @@
 
 ## Running
 
-You will need node v22.11.0
 
 Run the following commands in your favourite shell.
 ```shell
