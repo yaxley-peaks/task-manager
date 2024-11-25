@@ -9,7 +9,7 @@ export function TaskLister(props) {
         setChecked(!e.target.checked);
     }
     return <ol className="list-decimal text-left">
-        {props.tasks.map((task, index) => (<TaskItem key={index}
+        {props.tasks.map((task) => (<TaskItem key={task.id}
                                                      onChange={handleTaskMarkAsRead} task={task}/>))}
     </ol>;
 }
