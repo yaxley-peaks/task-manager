@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
+import {faPenToSquare, faSave} from "@fortawesome/free-solid-svg-icons";
 import {faTrashCan} from "@fortawesome/free-regular-svg-icons";
 
 export function TaskItem(props) {
@@ -19,17 +19,22 @@ export function TaskItem(props) {
 
     switch (isEditing) {
         case true:
-            renderedJsx = (<li className="p-1 m-1 text-xl" key={props.task.id}>
-                <input type="text" value={taskTitle} onChange={(e) => {
-                    setTaskTitle(e.target.value);
-                    props.onEdit(props.task.id, e.target.value)
-                }}/>
-                <button className="m-1 p-1" onClick={() => setEditing(false)}>Save</button>
-            </li>);
+            renderedJsx = (<>
+                <li className="p-1 m-1 text-xl flex items-center" key={props.task.id}>
+                    <input type="text" className="max-w-full w-full m-4 p-4" value={taskTitle} onChange={(e) => {
+                        setTaskTitle(e.target.value);
+                        props.onEdit(props.task.id, e.target.value)
+                    }}/>
+                    <button title="Save" className="m-1 ml-auto p-1" onClick={() => setEditing(false)}>
+                        <FontAwesomeIcon icon={faSave}/>
+                    </button>
+                </li>
+                <hr className="border border-gray-800 dark:border-white"/>
+            </>);
             break;
         case false:
             renderedJsx = (<>
-                <li className="p-1 m-1 text-xl flex items-center" key={props.task.id}>
+                <li className="p-1 m-1 text-xl flex items-center text-justify" key={props.task.id}>
                     <input type={"checkbox"}
                            onChange={(e) => {
                                setStatus(e.target.checked);
@@ -38,17 +43,17 @@ export function TaskItem(props) {
                            className="m-3 scale-150"
                            checked={status}/>
                     {wrapItemInStrikeThrough(taskTitle, status)}
-                    <span className="m-1 whitespace-nowrap">
-                    <button className="m-1 p-1" onClick={() => setEditing(true)}>
+                    <span className="m-1 pl-2 whitespace-nowrap ml-auto">
+                    <button className="m-1 p-1" title="Edit" onClick={() => setEditing(true)}>
                         
-                        <FontAwesomeIcon icon={faPenToSquare} />
+                        <FontAwesomeIcon icon={faPenToSquare}/>
                     </button>
-                    <button className="m-1 p-1" onClick={() => props.onDelete(props.task.id)}>
+                    <button className="m-1 p-1" title="Delete" onClick={() => props.onDelete(props.task.id)}>
                         <FontAwesomeIcon icon={faTrashCan} className="text-red-700"/>
                     </button>
                 </span>
                 </li>
-                <hr className="border border-gray-800 dark:border-white" />
+                <hr className="border border-gray-800 dark:border-white"/>
             </>);
             break;
         default:
