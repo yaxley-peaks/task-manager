@@ -31,6 +31,7 @@ export function AddTask(props) {
                    required={true}
                    id={"task-name"}
                    value={taskName}
+                   placeholder="Title..."
                    onChange={handleTaskTitleChange}
                    className="p-2 m-4 flex-1 rounded"/>
 
