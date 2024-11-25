@@ -3,7 +3,7 @@ import {useState} from "react";
 import {TaskItem} from "./TaskItem.jsx";
 
 
-export function TaskLister(props) {
+export function TaskList(props) {
     const [, setChecked] = useState(true);
     const handleTaskMarkAsRead = (e) => {
         setChecked(!e.target.checked);
@@ -18,7 +18,7 @@ export function TaskLister(props) {
     </ol>;
 }
 
-TaskLister.propTypes = {
+TaskList.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.any),
     taskEditDispatcher: PropTypes.func,
     taskDeleteDispatcher: PropTypes.func,

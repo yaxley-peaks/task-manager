@@ -1,11 +1,11 @@
 import {useState} from "react";
 import PropTypes from "prop-types";
 
-TaskAdder.propTypes = {
+AddTask.propTypes = {
     callbackFn: PropTypes.func,
 }
 
-export function TaskAdder(props) {
+export function AddTask(props) {
     const [taskName, setTaskName] = useState('');
     const [taskStatus, setTaskStatus] = useState(0);
 

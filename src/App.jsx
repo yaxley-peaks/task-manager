@@ -1,7 +1,7 @@
 import './App.css'
-import {TaskAdder} from "./components/TaskAdder.jsx";
+import {AddTask} from "./components/AddTask.jsx";
 import {useEffect, useRef, useState} from "react";
-import {TaskLister} from "./components/TaskLister.jsx";
+import {TaskList} from "./components/TaskList.jsx";
 
 
 function App() {
@@ -43,11 +43,11 @@ function App() {
     return (<>
         <h1 className="text-center font-sans">Task Manager</h1>
 
-        <TaskAdder callbackFn={taskAdderCallback}/>
-        <TaskLister tasks={tasks}
-                    taskEditDispatcher={taskEditCallback}
-                    taskDeleteDispatcher={taskDeleteCallback}
-                    taskDoneDispatcher={taskDoneCallback}/>
+        <AddTask callbackFn={taskAdderCallback}/>
+        <TaskList tasks={tasks}
+                  taskEditDispatcher={taskEditCallback}
+                  taskDeleteDispatcher={taskDeleteCallback}
+                  taskDoneDispatcher={taskDoneCallback}/>
     </>)
 }
 
