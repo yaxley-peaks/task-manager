@@ -53,7 +53,6 @@ function App() {
     const taskDoneCallback = (id, isDone) => {
         let t = tasks.slice();
         t.at(t.findIndex(x => x.id === id)).completed = isDone;
-        console.log(t);
         setTasks(t);
     }
 
