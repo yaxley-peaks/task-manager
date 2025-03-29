@@ -18,8 +18,6 @@ function App() {
             latestTaskId.current = ts.at(0)?.id ?? 1;
             return;
         }
-
-
         (async () => {
             /*
             @type {List<any>}
