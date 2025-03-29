@@ -7,9 +7,25 @@ Run the following commands in your favourite shell.
 ```shell
 git clone https://github.com/yaxley-peaks/task-manager.git
 cd task-manager
-npm install
-npm run dev
 ```
+
+and then
+
+```shell
+npm install
+npm run build 
+```
+
+OR,
+
+
+You may need to install node and npm; if you don't want to do that, use the docker build
+
+```shell
+export DOCKER_BUILDKIT=1; docker build -o dist .
+```
+
+This will put a `index.html` in the `dist` directory. Open that in your favourite browser.
 
 ## Component structure explanation
 
